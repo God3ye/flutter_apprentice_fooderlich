@@ -4,7 +4,7 @@ import 'package:fooderlich/circle_image.dart';
 
 import 'fooderlich_theme.dart';
 
-class AuthorCard extends StatelessWidget {
+class AuthorCard extends StatefulWidget {
   final String authorName;
   final String jobTitle;
   final ImageProvider? imageProvider;
@@ -16,6 +16,13 @@ class AuthorCard extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<AuthorCard> createState() => _AuthorCardState();
+}
+
+bool _isFavorited = false;
+
+class _AuthorCardState extends State<AuthorCard> {
+  @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16),
@@ -25,7 +32,7 @@ class AuthorCard extends StatelessWidget {
           Row(
             children: [
               ImageCircle(
-                imageProvider: imageProvider,
+                imageProvider: widget.imageProvider,
                 imageRadius: 28,
               ),
               const SizedBox(width: 9),
@@ -33,11 +40,11 @@ class AuthorCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    authorName,
+                    widget.authorName,
                     style: FooderlichTheme.lightTextTheme.headline2,
                   ),
                   Text(
-                    jobTitle,
+                    widget.jobTitle,
                     style: FooderlichTheme.lightTextTheme.headline3,
                   ),
                 ],
@@ -46,10 +53,15 @@ class AuthorCard extends StatelessWidget {
           ),
           IconButton(
             onPressed: () {
-              const snackBar = SnackBar(content: Text('Pressed'));
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              setState(() => _isFavorited = !_isFavorited);
+              // const snackBar = SnackBar(content: Text('Pressed'));
+              // ScaffoldMessenger.of(context).showSnackBar(snackBar);
             },
-            icon: Icon(Icons.favorite_border, color: Colors.pink.shade300),
+            icon: Icon(
+              _isFavorited ? Icons.favorite : Icons.favorite_border,
+            ),
+            iconSize: 30,
+            color: Colors.pink.shade300,
           ),
         ],
       ),
