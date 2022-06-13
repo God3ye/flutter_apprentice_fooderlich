@@ -1,8 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:fooderlich/circle_image.dart';
+import 'circle_image.dart';
 
-import 'fooderlich_theme.dart';
+import '../fooderlich_theme.dart';
 
 class AuthorCard extends StatefulWidget {
   final String authorName;
