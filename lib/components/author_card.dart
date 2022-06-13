@@ -27,13 +27,13 @@ class _AuthorCardState extends State<AuthorCard> {
     return Container(
       padding: const EdgeInsets.all(16),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Row(
             children: [
               ImageCircle(
                 imageProvider: widget.imageProvider,
-                imageRadius: 28,
+                imageRadius: 23,
               ),
               const SizedBox(width: 9),
               Column(
@@ -41,11 +41,11 @@ class _AuthorCardState extends State<AuthorCard> {
                 children: [
                   Text(
                     widget.authorName,
-                    style: FooderlichTheme.lightTextTheme.headline2,
+                    style: FooderlichTheme.lightTextTheme.headline6,
                   ),
                   Text(
                     widget.jobTitle,
-                    style: FooderlichTheme.lightTextTheme.headline3,
+                    style: FooderlichTheme.lightTextTheme.bodyText1,
                   ),
                 ],
               ),
