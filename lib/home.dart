@@ -36,7 +36,10 @@ class _HomeState extends State<Home> {
           appBar: AppBar(
               title: Text('Fooderlich',
                   style: Theme.of(context).textTheme.headline6)),
-          body: pages[tabManager.selectedTab],
+          body: IndexedStack(
+            index: tabManager.selectedTab,
+            children: pages,
+          ),
           bottomNavigationBar: BottomNavigationBar(
               currentIndex: tabManager.selectedTab,
               onTap: (index) => tabManager.goToTab(index),

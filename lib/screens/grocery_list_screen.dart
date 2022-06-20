@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fooderlich/screens/grocery_item_screen.dart';
 
 import '../components/components.dart';
 import '../models/models.dart';
@@ -16,16 +17,49 @@ class GroceryListScreen extends StatelessWidget {
         itemCount: groceryItems.length,
         itemBuilder: (context, index) {
           final items = groceryItems[index];
-          //TODO: Dismissiable
-          //TODO: InkWell
-          return GroceryTile(
+
+          return Dismissible(
             key: Key(items.id),
-            item: items,
-            onComplete: (change) {
-              if (change != null) {
-                manager.completeItem(index, change);
-              }
+            direction: DismissDirection.endToStart,
+            background: Container(
+              alignment: Alignment.centerRight,
+              color: Colors.red,
+              child: const Icon(
+                Icons.delete_forever_rounded,
+                color: Colors.white,
+                size: 50,
+              ),
+            ),
+            onDismissed: (direction) {
+              manager.deleteItem(index);
+              ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('${items.name} is dismissed')));
             },
+            child: InkWell(
+              child: GroceryTile(
+                key: Key(items.id),
+                item: items,
+                onComplete: (change) {
+                  if (change != null) {
+                    manager.completeItem(index, change);
+                  }
+                },
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => GroceryItemScreen(
+                        originalItem: items,
+                        onCreate: () {},
+                        onUpdate: (item) {
+                          manager.updateItem(item, index);
+                          Navigator.pop(context);
+                        }),
+                  ),
+                );
+              },
+            ),
           );
         },
         separatorBuilder: (context, index) {
