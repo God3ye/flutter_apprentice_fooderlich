@@ -39,7 +39,7 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
     if (originalItem != null) {
       _nameController.text = originalItem.name;
       _name = originalItem.name;
-      _currentSliderValue = originalItem.quality;
+      _currentSliderValue = originalItem.quantity;
       _importance = originalItem.importance;
       _currentColor = originalItem.color;
       final date = originalItem.date;
@@ -74,7 +74,7 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
                   name: _nameController.text,
                   importance: _importance,
                   color: _currentColor,
-                  quality: _currentSliderValue,
+                  quantity: _currentSliderValue,
                   date: DateTime(
                     _dueDate.year,
                     _dueDate.month,
@@ -115,7 +115,7 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
                 name: _name,
                 importance: _importance,
                 color: _currentColor,
-                quality: _currentSliderValue,
+                quantity: _currentSliderValue,
                 date: DateTime(
                   _dueDate.year,
                   _dueDate.month,
