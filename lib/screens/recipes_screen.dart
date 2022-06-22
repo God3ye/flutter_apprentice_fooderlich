@@ -5,6 +5,7 @@ import 'package:fooderlich/models/models.dart';
 
 class RecipesScreen extends StatelessWidget {
   final exploreService = MockFooderlichService();
+
   RecipesScreen({Key? key}) : super(key: key);
 
   @override
@@ -15,7 +16,9 @@ class RecipesScreen extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.done) {
           return RecipeGridView(recipes: snapshot.data ?? []);
         } else {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
         }
       },
     );

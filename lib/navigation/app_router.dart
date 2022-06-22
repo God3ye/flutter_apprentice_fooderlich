@@ -49,7 +49,7 @@ class AppRouter extends RouterDelegate
                 groceryManager.addItem(item);
               },
               onUpdate: (item, index) {}),
-        if (groceryManager.selectedIndex != 1)
+        if (groceryManager.selectedIndex != -1)
           GroceryItemScreen.page(
               index: groceryManager.selectedIndex,
               item: groceryManager.selectedGroceryItem,

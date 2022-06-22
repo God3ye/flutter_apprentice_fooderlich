@@ -31,7 +31,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
         leading: IconButton(
           icon: const Icon(Icons.close),
           onPressed: () {
-            // TODO: Close Profile Screen
+            Provider.of<ProfileManager>(context, listen: false)
+                .tapOnProfile(false);
           },
         ),
       ),
@@ -64,8 +65,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ListTile(
           title: const Text('Log out'),
           onTap: () {
+            // 1
             Provider.of<ProfileManager>(context, listen: false)
                 .tapOnProfile(false);
+            // 2
             Provider.of<AppStateManager>(context, listen: false).logOut();
           },
         )
@@ -102,9 +105,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         const SizedBox(height: 16.0),
         Text(
           widget.user.firstName,
-          style: const TextStyle(
-            fontSize: 21,
-          ),
+          style: const TextStyle(fontSize: 21),
         ),
         Text(widget.user.role),
         Text(
