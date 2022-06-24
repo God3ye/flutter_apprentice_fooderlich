@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'fooderlich_theme.dart';
 import 'models/models.dart';
+import 'navigation/app_route_parser.dart';
 import 'navigation/app_router.dart';
 
 void main() {
@@ -22,6 +23,7 @@ class _FooderlichState extends State<Fooderlich> {
   final _groceryManager = GroceryManager();
   final _profileManager = ProfileManager();
   final _appStateManager = AppStateManager();
+  final routeParser = AppRouteParser();
   late AppRouter _appRouter;
 
   @override
@@ -55,13 +57,12 @@ class _FooderlichState extends State<Fooderlich> {
             theme = FooderlichTheme.light();
           }
 
-          return MaterialApp(
+          return MaterialApp.router(
             theme: theme,
             title: 'Fooderlich',
-            home: Router(
-              routerDelegate: _appRouter,
-              backButtonDispatcher: RootBackButtonDispatcher(),
-            ),
+            routeInformationParser: routeParser,
+            routerDelegate: _appRouter,
+            backButtonDispatcher: RootBackButtonDispatcher(),
           );
         },
       ),
